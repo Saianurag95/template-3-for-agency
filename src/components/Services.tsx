@@ -6,9 +6,10 @@ import {
   MapPin,
   Bell,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { SERVICES } from "../data";
 
-const ICON_MAP: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+const ICON_MAP: Record<string, LucideIcon> = {
   Target,
   TrendingUp,
   Zap,
