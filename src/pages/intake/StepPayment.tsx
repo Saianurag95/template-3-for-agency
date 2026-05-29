@@ -4,16 +4,13 @@ import type { IntakeData } from "../IntakePage";
 interface Props { data: IntakeData; update: (f: Partial<IntakeData>) => void; }
 
 const PAYMENT_METHODS = [
-  "UPI (GPay, PhonePe, Paytm)",
-  "Bank Transfer (NEFT / IMPS)",
   "Razorpay / Online Payment",
-  "Other — will discuss with team",
 ];
 
 const MILESTONES = [
-  { amount: "50%", label: "Advance", timing: "Before build starts" },
-  { amount: "25%", label: "Mid-point", timing: "After first review" },
-  { amount: "25%", label: "Completion", timing: "Before file delivery" },
+  { amount: "100%", label: "Online payment", timing: "After intake submission" },
+  { amount: "₹500-₹900", label: "Domain + hosting", timing: "Added only if we arrange it" },
+  { amount: "Razorpay", label: "Confirmation", timing: "Before production starts" },
 ];
 
 export default function StepPayment({ data, update }: Props) {
@@ -21,7 +18,7 @@ export default function StepPayment({ data, update }: Props) {
     <div>
       <div className="mb-8">
         <h2 className="font-display text-2xl font-bold text-white mb-2">Payment Section</h2>
-        <p className="text-zinc-500 font-light text-[14.5px]">Confirm your payment preference. Full details shared by our team.</p>
+        <p className="text-zinc-500 font-light text-[14.5px]">Payment is online-only through Razorpay after intake submission.</p>
       </div>
 
       {/* Milestone structure */}
@@ -44,7 +41,7 @@ export default function StepPayment({ data, update }: Props) {
       {/* Payment methods */}
       <div className="flex flex-col gap-2.5 mb-6">
         <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-[0.12em] mb-1">
-          Preferred Payment Method *
+          Payment Method *
         </p>
         {PAYMENT_METHODS.map((method) => (
           <button key={method} type="button" onClick={() => update({ paymentMethod: method })}
@@ -72,7 +69,7 @@ export default function StepPayment({ data, update }: Props) {
             {data.paymentConfirmed && <CheckCircle className="w-3.5 h-3.5 text-zinc-950" strokeWidth={2.5} />}
           </div>
           <p className={`text-[13.5px] font-medium leading-snug ${data.paymentConfirmed ? "text-brand-400" : "text-zinc-400"}`}>
-            I understand the milestone structure and confirm I am ready to proceed with the 50% advance. *
+            I understand payment must be completed online through Razorpay. No other payment mode is accepted. *
           </p>
         </div>
       </div>

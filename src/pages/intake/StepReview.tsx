@@ -4,9 +4,9 @@ import type { IntakeData } from "../IntakePage";
 interface Props { data: IntakeData; onSubmit: () => void; }
 
 const PACKAGES_MAP: Record<string, string> = {
-  starter: "Starter Website — ₹6,000",
-  business: "Business Website — ₹8,000",
-  premium: "Premium Growth Website — ₹12,000",
+  starter: "Starter Website — ₹6,000 / ₹6,500 with domain + hosting",
+  business: "Business Website — ₹8,000 / ₹8,700 with domain + hosting",
+  premium: "Premium Growth Website — ₹12,000 / ₹12,900 with domain + hosting",
 };
 
 function ReviewSection({ title, rows }: { title: string; rows: { label: string; value: string }[] }) {

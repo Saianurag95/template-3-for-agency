@@ -47,6 +47,9 @@ export default function StepPackage({ data, update, packages }: Props) {
               <div className={`font-display text-2xl font-bold mb-4 ${isSelected ? "text-brand-400" : "text-white"}`}>
                 {pkg.price}
               </div>
+              {"hostingPrice" in pkg && (
+                <div className="text-[12px] font-semibold text-brand-400/80 mb-4">{pkg.hostingPrice}</div>
+              )}
 
               <div className="flex flex-col gap-2 mb-4">
                 {[
@@ -81,7 +84,7 @@ export default function StepPackage({ data, update, packages }: Props) {
         <p className="text-amber-400/70 text-[13px] mt-4 font-light">Please select a package to continue.</p>
       )}
       <p className="text-zinc-700 text-[12px] mt-4 font-light">
-        Prices in ₹ (INR). Demo pricing shown — final quote confirmed after intake review.
+        Prices in ₹ (INR). Demo pricing shown. Add ₹500 to ₹900 if we arrange domain and hosting.
       </p>
     </div>
   );
