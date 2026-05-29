@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CheckCircle, AlertCircle, ChevronRight, ChevronLeft, Zap } from "lucide-react";
 import { Link } from "react-router-dom";
 import { INTAKE_TEMPLATES, PACKAGES } from "../data";
+import { submitIntakeWithRazorpay } from "../payments/razorpay";
 import StepBusiness from "./intake/StepBusiness";
 import StepRequirements from "./intake/StepRequirements";
 import StepTemplate from "./intake/StepTemplate";
@@ -104,6 +105,19 @@ export default function IntakePage() {
   const isLastDataStep = currentStep === STEPS.length - 2;
   const next = () => { if (canContinue && !isReview) setCurrentStep((s) => s + 1); };
   const back = () => { if (currentStep > 0) setCurrentStep((s) => s - 1); };
+  const handlePaymentSubmit = () => {
+    const selectedPkg = PACKAGES.find((pkg) => pkg.id === data.selectedPackage);
+    submitIntakeWithRazorpay({
+      templateId: data.selectedTemplateId || "AG-LEAD-03",
+      formData: data as unknown as Record<string, unknown>,
+      packageName: selectedPkg?.name || data.selectedPackage || "Starter",
+      packagePrice: selectedPkg?.price,
+      customerName: data.contactName,
+      customerEmail: data.email,
+      customerPhone: data.phone,
+      businessName: data.businessName,
+    }).catch(() => setSubmitted(true));
+  };
 
   const STEP_COMPONENTS = [
     <StepBusiness key={0} data={data} update={update} />,
@@ -116,7 +130,7 @@ export default function IntakePage() {
     <StepSEO key={7} data={data} update={update} />,
     <StepPackage key={8} data={data} update={update} packages={PACKAGES} />,
     <StepPayment key={9} data={data} update={update} />,
-    <StepReview key={10} data={data} onSubmit={() => setSubmitted(true)} />,
+    <StepReview key={10} data={data} onSubmit={handlePaymentSubmit} />,
   ];
 
   if (submitted) {

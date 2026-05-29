@@ -120,8 +120,8 @@ export default function StepReview({ data, onSubmit }: Props) {
       <div className="bg-brand-400/5 border border-brand-400/15 rounded-2xl p-5 mb-8 flex gap-3.5">
         <CheckCircle className="w-5 h-5 text-brand-400 flex-shrink-0 mt-0.5" strokeWidth={1.75} />
         <p className="text-zinc-400 text-[13.5px] leading-relaxed font-light">
-          By submitting, you confirm that all information is accurate and you are ready to begin
-          the project with the 50% advance payment.
+          By continuing, you confirm that all information is accurate and you are ready to complete
+          the full package payment through Razorpay.
         </p>
       </div>
 
@@ -129,7 +129,7 @@ export default function StepReview({ data, onSubmit }: Props) {
         onClick={onSubmit}
         className="group w-full inline-flex items-center justify-center gap-3 bg-brand-400 text-zinc-950 font-bold py-4.5 rounded-xl text-[15px] hover:bg-brand-300 transition-all hover:shadow-lime-glow"
       >
-        Submit Project Intake
+        Pay with Razorpay
         <Send className="w-4.5 h-4.5 group-hover:translate-x-0.5 transition-transform" />
       </button>
     </div>
